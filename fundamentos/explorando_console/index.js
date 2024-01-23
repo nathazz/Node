@@ -15,3 +15,5 @@ setTimeout(() => {
 },2000)
 
 
+// (!list.includes(r))
+// const list = ["sim", "yes", "s", "y"]

@@ -2,11 +2,12 @@
 const minimist = require('minimist')
 
 //interno
-const soma = require('./soma.js').soma
+const calculo = require('./calculo.js').calculo
 const args = minimist(process.argv.slice(2))
 
 
 const a = parseInt(args['a'])
 const b = parseInt(args['b'])
+const c = parseInt(args['c'])
 
-soma(a,b)
+calculo(a,b,c)
