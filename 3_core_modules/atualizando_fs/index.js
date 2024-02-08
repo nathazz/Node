@@ -14,6 +14,7 @@ E assim por diante.
 const server = http.createServer((req,res) =>{
 
     const urlInfo = require('url').parse(req.url, true) 
+
     const text = urlInfo.query.text;
     const two = urlInfo.query.two
     const trhee = urlInfo.query.trhee
