@@ -1,0 +1,3 @@
+npx cowsay "texto"
+
+vaquinha de olhos fechados: npx cowsay -d "texto"

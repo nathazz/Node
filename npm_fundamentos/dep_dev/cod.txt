@@ -1,0 +1,4 @@
+npm i --save-dev + nome 
+
+para salvar uma depedencia ou uma api
+dependencia de dev
