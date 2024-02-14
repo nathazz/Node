@@ -1,7 +1,7 @@
 import inquirer from 'inquirer'
 import chalk from 'chalk'
 import fs, { rename } from 'fs'
-import path from 'path'
+
 
 const operation = () => {
 
@@ -124,6 +124,7 @@ const deposit = () =>{
             name: "accountName",
             message: "Qual o nome da sua conta?"
         }
+        
     ]).then((answer) =>{
 
         const accountName = answer['accountName']
