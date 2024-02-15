@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import fs, { rename } from 'fs'
 
 
+
 const operation = () => {
 
     inquirer.prompt([
@@ -10,7 +11,7 @@ const operation = () => {
             type: 'list',
             name:'action',
             message:'O que você deseja fazer?',
-            choices:['Criar Conta','Renomear Conta', 'Consultar Saldo', 'Depositar', 'Sacar', 'Sair'],
+            choices:['Criar Conta','Renomear Conta', 'Consultar Saldo', 'Depositar', 'Sacar','Apagar Conta', 'Sair'],
         }
     ]).then((answer) => {
         const action = answer['action']
@@ -23,6 +24,7 @@ const operation = () => {
                 renameName()
                 break
             case 'Consultar Saldo':
+                checkBalance()
                 break
             case 'Depositar':
                 deposit()
@@ -31,6 +33,8 @@ const operation = () => {
                 break
            case 'Sair':
             break
+           case 'Apagar Conta':
+                break
             default:
                 break                                                        
         }
@@ -67,8 +71,9 @@ const buildAccount = () => {
 
         if(fs.existsSync(`accounts/${accountName}.json`)){
             console.log(chalk.bgRed.black('Está conta já existe, escolha outro nome!'));
-            buildAccount()
-            return
+           
+            return buildAccount()
+           
         }
 
         fs.writeFileSync(`accounts/${accountName}.json`, '{"balance": 0}', (err)=>{
@@ -102,8 +107,9 @@ const renameName = () => {
     
         if(!fs.existsSync(oldP)){
          console.log(chalk.bgRed.black('Essa conta não existe!'));
-         renameName()
-         return
+       
+         return renameName()
+     
         }
 
         fs.renameSync(oldP, newP, (err)=>{
@@ -116,6 +122,7 @@ const renameName = () => {
     }).catch((err) => console.log(err))
 } 
 
+//depositar
 const deposit = () =>{
 
     inquirer.prompt([
@@ -128,22 +135,99 @@ const deposit = () =>{
     ]).then((answer) =>{
 
         const accountName = answer['accountName']
+        
         if(!checkAccount(accountName)){
             return deposit()
         }
+
+        inquirer.prompt([
+            {
+                name: "amount", /*quantidade*/
+                message: "Quanto você deseja depositar?"
+            }
+
+        ]).then((answer) =>{
+            const amount = answer['amount']
+            addAmount(accountName, amount)
+            operation()
+
+        }).catch((err) => console.log(err))
 
 
     }).catch((err) => console.log(err))
 }
 
+//consultar saldo
+const checkBalance = () => {
+    inquirer.prompt([
+        {
+            name:"accountName",
+            message:"Qual o nome da sua conta?"
+        }
+    
+    ]).then((answer) =>{
 
+        const accountName = answer['accountName']
+      
+        if(!checkAccount(accountName)){
+            return checkBalance()
+        }
+
+        const way = getAccount(accountName)
+        console.log(chalk.green(`O saldo na conta ${accountName} é ${way.balance}R$💰`))
+
+        operation()
+
+
+    }).catch((err) =>  console.log(chalk.bgRed.black('Essa conta não existe, escolha outro nome!'), err.message))
+}
+
+//deletar conta 
+
+const deleteAccount = () => {
+    inquirer.prompt()
+}
+
+//funções de apoio
 const checkAccount = (accountName) => {
    
     if(!fs.existsSync(`accounts/${accountName}.json`)){
         console.log(chalk.bgRed.black('Essa conta não existe, escolha outro nome!'));
         return false
     }
+
     return true
 }
+
+const addAmount = (accountName, amount) => {
+
+    const accountData = getAccount(accountName)
+
+    if(!amount) {
+         console.log(chalk.bgRed.black('Ocorreu um erro, tente novamente mais tarde'))
+         return deposit()
+    }
+  
+
+    accountData.balance = parseFloat(amount) + parseFloat(accountData.balance)
+
+    fs.writeFileSync(`accounts/${accountName}.json`, JSON.stringify(accountData), (err) =>{
+        console.log(err);
+    })
+
+    console.log(chalk.green(`Foi depositado o valor de R$${amount} na sua conta!`))
+}
+
+
+const getAccount = (accountName, amount) => {
+
+    const accountJSON = fs.readFileSync(`accounts/${accountName}.json`, {
+        encoding: 'utf-8',
+        flag: 'r'
+    })
+
+    return JSON.parse(accountJSON)
+}
+
 
 operation()

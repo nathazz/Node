@@ -1,10 +1,9 @@
 {
   "name": "fs_write",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "dev":"nodemon index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,5 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^3.0.3"
-  }
+  },
+  "description": ""
 }
