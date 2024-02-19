@@ -30,10 +30,12 @@ const operation = () => {
                 deposit()
                 break
            case 'Sacar':
+                withdraw()
+                break
+          case 'Apagar Conta':
+                deleteAccount()
                 break
            case 'Sair':
-            break
-           case 'Apagar Conta':
                 break
             default:
                 break                                                        
@@ -96,28 +98,36 @@ const renameName = () => {
             message:'Digite o nome da sua conta:'
 
         },  
-        {
-            name:'rename',
-            message:'Agora, digite o nome que vc deseja renomear:'
-        }
     ]).then((answer) => {
 
         const oldP = `accounts/${answer.archive}.json`
-        const newP = `accounts/${answer.rename}.json`
+    
     
         if(!fs.existsSync(oldP)){
          console.log(chalk.bgRed.black('Essa conta não existe!'));
        
          return renameName()
-     
         }
 
-        fs.renameSync(oldP, newP, (err)=>{
-            if(err) console.log(err)
-        })
-        
-        console.log(chalk.green(`Parabéns, sua conta foi renomeada para ${answer.rename} !`))
-        operation()
+        inquirer.prompt([
+            { 
+             name:'rename',
+             message:'Agora, digite o nome que vc deseja renomear:'
+           }
+        ]).then((answer) => {
+            
+            const newP = `accounts/${answer.rename}.json`
+
+            fs.renameSync(oldP, newP, (err)=>{
+                if(err) console.log(err)
+            })
+            
+            console.log(chalk.green(`Parabéns, sua conta foi renomeada para ${answer.rename}!`))
+            operation()
+
+        }).catch((err) => console.log(err))
+
+     
 
     }).catch((err) => console.log(err))
 } 
@@ -185,7 +195,79 @@ const checkBalance = () => {
 //deletar conta 
 
 const deleteAccount = () => {
-    inquirer.prompt()
+    inquirer.prompt([
+        {
+            name:"accountName",
+            message:"Você deseja deletar qual conta?"
+        },
+    ]).then((answer) => {
+
+       const accountName = answer['accountName']
+
+       if(!checkAccount(accountName)){
+        return deleteAccount()
+    }
+
+    inquirer.prompt([
+        {
+            name:"msg",
+            message:"Você tem certeza que quer eliminar esta conta?(s/sim) (n/não/nao):"
+
+       }]).then((answer) =>{
+
+        const way = `accounts/${accountName}.json`
+
+        if( answer.msg === 's' || answer.msg === 'sim'){
+
+            fs.unlinkSync(way, (err) =>{
+                console.log(err)
+               })
+
+            console.log((chalk.green(`A conta ${accountName} foi excluída com sucesso`)))
+            operation()
+        }else{
+            console.log(chalk.yellow(`A conta ${accountName} ainda existe`));
+            operation()
+        }
+
+       }).catch((err) => console.log(err))
+    
+
+    }).catch((err) => console.log(err))
+}
+
+//sacar
+const withdraw = () => {
+    inquirer.prompt([
+        {
+            name:"accountName",
+            message:"De qual conta você deseja sacar o saldo?"
+        }
+    ]).then((answer) => {
+        const accountName = answer['accountName']
+
+       if(!checkAccount(accountName)){
+        return withdraw()
+       }
+
+       inquirer.prompt([
+        {
+            name:"amount",
+            message:"Qual valor você deseja sacar?"
+        }
+       ]).then((answer) => {
+
+        const amount = parseFloat(answer['amount']);
+
+        if (isNaN(amount) || amount <= 0) {
+            console.log(chalk.bgRed.black('Por favor, insira um valor válido.'));
+            return withdraw();
+        }
+
+        getBalance(accountName, amount)
+
+       }).catch((err) => console.log(err))
+    }).catch((err) => console.log(err))
 }
 
 //funções de apoio
@@ -218,6 +300,24 @@ const addAmount = (accountName, amount) => {
     console.log(chalk.green(`Foi depositado o valor de R$${amount} na sua conta!`))
 }
 
+const getBalance = (accountName, amount) => {
+
+    const accountData = getAccount(accountName);
+
+    if (amount > accountData.balance) {
+        console.log(chalk.bgRed.black('Você não tem dinheiro suficiente para sacar este saldo.'));
+        return operation();
+    } 
+
+    accountData.balance = accountData.balance - amount
+
+    fs.writeFileSync(`accounts/${accountName}.json`, JSON.stringify(accountData), (err) => {
+        if (err) console.log(err);
+    })
+
+        console.log(chalk.green(`Um saque de $${amount} foi realizado em sua conta. Agora você tem $${accountData.balance}.`));
+        operation()
+}
 
 const getAccount = (accountName, amount) => {
 
@@ -228,6 +328,5 @@ const getAccount = (accountName, amount) => {
 
     return JSON.parse(accountJSON)
 }
-
 
 operation()
