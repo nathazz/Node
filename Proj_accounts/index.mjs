@@ -193,7 +193,6 @@ const checkBalance = () => {
 }
 
 //deletar conta 
-
 const deleteAccount = () => {
     inquirer.prompt([
         {
@@ -255,6 +254,7 @@ const withdraw = () => {
             name:"amount",
             message:"Qual valor você deseja sacar?"
         }
+        
        ]).then((answer) => {
 
         const amount = parseFloat(answer['amount']);

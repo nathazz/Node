@@ -31,5 +31,5 @@ app.get('/', (req,res) => {
 
 
 app.listen(PORT, () =>{
-    console.log(`Servidor rodando ma porta localhost:${PORT}`);
+    console.log(`Servidor rodando na porta http://localhost:${PORT}`);
 })
