@@ -1,0 +1,64 @@
+
+
+.h_home{
+    font-size: 20px;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 2em;
+}
+
+.p_home{
+    text-align: center;
+    font-size: 20px;
+    font-family: sans-serif;
+    text-align: center;
+    padding: 2em;
+}
+.div_home{
+    margin: 4em;
+    padding: 1em;
+    background-color: rgb(255, 255, 255);
+}
+
+#h_form{
+    text-align: center;
+    margin-top: 50px;
+    font-family: sans-serif;
+}
+
+#user_form{
+    text-align: center;
+    margin-top: 50px;
+}
+
+#myForm {
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
