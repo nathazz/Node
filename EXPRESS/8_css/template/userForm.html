@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <title>Adicionar Usuário</title>
+</head>
+<body>
+    <h1 id="h_form">Preencha</h1>
+    <form id="myForm" action="/users/save" method="get" >
+        <div><input id="name" type="text" name="name" placeholder="Digite um nome"></div>
+        <div><input id="age" type="text" name="age" placeholder="Digite a idade"></div>
+        <div><input id="email" type="email" name="email" placeholder="Digite o seu email"></div>
+      
+        <div>
+            <button type="submit" onclick="saveLocalStorage()" >Cadastrar</button>
+        </div>
+    </form>
+    
+ 
+    <div class="p">
+        <button class="p_f" onclick="showStorage()">Dados guardados...</button>
+    </div>
+   
+ <script src="/js/storage.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    // Aguarda o carregamento completo do documento HTML antes de executar o código JavaScript
+    document.addEventListener('DOMContentLoaded', () => {
+       
+        function validateForm(event) {
+            const name = document.getElementById('name').value;
+            const age = document.getElementById('age').value;
+            const email = document.getElementById('email').value;
+
+            if (!name || !age || !email ) {
+                event.preventDefault(); // Impede o envio do formulário
+                Toastify({
+                    text: "Por favor, preencha todos os campos!",
+                    position: 'right',
+                    className:"info",
+                    style: {
+                        color:"white",
+                        "font-family":"sans-serif",
+                        "border-radius":"10px",
+                        background:"#DF2727"
+                    }
+                }).showToast();
+            }
+        }
+
+        // Adiciona um ouvinte de evento para o evento de submissão do formulário
+        document.getElementById('myForm').addEventListener('submit', validateForm);
+    });
+</script>
+
+    
+</body>
+    
+</html>

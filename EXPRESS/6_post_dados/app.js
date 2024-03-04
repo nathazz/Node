@@ -15,21 +15,6 @@ app.use(express.json())
 
 const basePath = path.join(__dirname, "templates");
 
-const checkAuth = (req, res, next) => {
-  req.authStatus = false;
-
-  if (req.authStatus) {
-    console.log("Está logado, pode continuar");
-    next();
-  }
-
-  console.log("Não está logado, faça o login para continuar");
-  next();
-}; 
-
-app.use(checkAuth);
-
-
 app.get("/", (req, res) => {
   res.status(200).sendFile(`${basePath}/index.html`);
 });
@@ -46,6 +31,7 @@ app.post("/users/save" , (req,res) => {
   const age = req.body.age
 
   res.status(200).send(`Nome:${name}\nIdade:${age}`)
+
   console.log(`Nome:${name}\nIdade:${age}`);
   console.log(p);
 })

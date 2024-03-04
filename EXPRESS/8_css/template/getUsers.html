@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <title>Usuarios</title>
+</head>
+<body>
+    <h1 id="h_form">User</h1>
+
+        <div id="myForm">
+            <div id="container"></div>
+
+            <div class="div_in">
+                <img class="img" id="img" src="../img/Group.svg" alt="icon_profile"></img>
+                <p id="nome" class="name"></p>
+            </div>
+            <div><p id="idade" class="age"></p></div>
+            <div><p id="email" class="age"></p></div>
+            <div><input id="file" type="file" /></div>
+        </div>
+
+        <script>
+            
+            const urlParams = new URLSearchParams(window.location.search)
+          
+            const name = urlParams.get("name")
+            const age = urlParams.get("age")
+            const email = urlParams.get("email")
+            let profilePic = document.getElementById("img")
+            let inputFile = document.getElementById("file")
+
+
+            document.getElementById('nome').innerText = `${name}`;
+            document.getElementById('idade').innerText = `Idade: ${age}`;
+            document.getElementById('email').innerText = `Email: ${email}`;
+
+            inputFile.onchange  = function () {
+                profilePic.src = URL.createObjectURL(inputFile.files[0])
+            }
+
+        </script>
+    </body>
+</html>

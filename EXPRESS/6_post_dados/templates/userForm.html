@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>Adicionar Usuário</title>
 </head>
 <body>
     <h1>Preencha</h1>
+
     <form id="myForm" action="/users/save" method="post">
         <div><input id="name" type="text" name="name" placeholder="Digite um nome"></div>
         <div><input id="age" type="text" name="age" placeholder="Digite a idade"></div>
@@ -15,17 +17,24 @@
         </div>
     </form>
 
-    <script>
-        
-     document.getElementById('myForm').addEventListener('submit', (event) => {
+    
+</body>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js">
+
+document.getElementById('myForm').addEventListener('submit', (event) => {
         const name = document.getElementById('name').value;
         const age = document.getElementById('age').value;
 
         if (!name || !age) {
-            alert('Por favor preencha o formulário corretamente');
+            Toastify({
+                text: error.message,
+                position:'center'
+
+            }).showToast()
             event.preventDefault(); 
         }
     });
-    </script>
-</body>
+
+</script>
 </html>
