@@ -1,0 +1,14 @@
+.h_e{
+    margin: 5em;
+     text-align: center;
+     font-size:20px;
+     font-family: sans-serif;   
+  }
+  
+  .p_e, .a_e{
+      text-align: center;
+      text-decoration: none;
+      color: #007bff;
+      font-size:18px;
+      font-family: sans-serif;   
+   }

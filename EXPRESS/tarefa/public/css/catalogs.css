@@ -1,0 +1,46 @@
+.section_catalog{
+    display: flex;
+    justify-content: center;
+    gap: 8em;
+    flex-wrap: wrap;
+}
+
+
+.card{
+    background-color: var(--white);
+    width: 220px;
+    font-family: "Raleway", sans-serif;
+    padding: 2em;
+    margin-top: 6em;
+    height: 16em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img_c{
+    margin-bottom: 1.5em;
+}
+
+.h_c{
+    font-weight: 600;
+    margin-bottom: 3em;
+}
+
+.btn_c{
+    border: none;
+    color: white;
+     background-color: var(--yellowButton);
+     padding: 1em;
+     width: 80%;
+     border-radius: 5px;
+     cursor: pointer;
+     font-size: 15px;
+}
+

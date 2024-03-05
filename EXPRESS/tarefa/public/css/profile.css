@@ -1,0 +1,44 @@
+#div_profile {
+    max-width: 300px;
+    margin: 0 auto;
+    font-family: "Raleway", sans-serif;
+    background-color: #fff;
+    padding: 2em;
+    margin-top: 6em;
+    height: 20em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    border-radius: 80px;
+}
+.name, .img, .age, .bio{
+    margin-bottom: 1em;
+}
+.div_in{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.img{
+    width: 40%;
+}
+
+.s_b{
+    color: black;
+    font-weight: 700;
+}
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}

@@ -11,6 +11,7 @@ app.use(
   })
 )
 
+
 app.use(express.json())
 
 //usamos um static para por css(da pra usar js tbm)
