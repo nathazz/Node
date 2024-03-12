@@ -3,8 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="../css/home.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <title>user</title>
 </head>
+<header>
+    <nav class="nav">
+        <ul class="ul">
+                <li class="li_f"><a href="/" class="li_f">Food's</a></li>
+           <div class="ul">
+            <li class="li_c"><a class="li_c" href="/foods/log">sign up</a></li>
+            <li class="li_p"><a class="li_p" href="/foods/profile">Profile</a></li>
+           </div>
+            
+        </ul>
+    </nav>
+</header>
 <body>
+    <div class="cnt_f">
+        <h1 id="h_form">Preencha</h1>
+        <form id="myForm" action="/foods/profile" method="post">
+            <div><input id="name" type="text" name="name" placeholder="Digite um nome"></div>
+            <div><input id="email" type="email" name="email" placeholder="Digite o seu email"></div>
+            <div class="password-container">
+                <input id="password" type="password" oninput=" limitCharacter()" name="key" placeholder="Digite alguma senha">
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+            </div>
+          
+            <div>
+                <button type="submit" onclick="saveAccount()">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="../js/password.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        function saveAccount() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (!name || !email || !password) {
+                event.preventDefault();
+                Toastify({
+                    text: "Por favor, preencha todos os campos!",
+                    position: 'right',
+                    className: "info",
+                    style: {
+                        color: "white",
+                        "font-family": "sans-serif",
+                        "border-radius": "10px",
+                        background: "#DF2727"
+                    }
+                }).showToast();
+            }
+        }
+    </script>
 </body>
 </html>

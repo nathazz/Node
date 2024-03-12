@@ -24,7 +24,6 @@ app.get("/", (req, res) => {
   res.status(200).sendFile(`${basePath}/index.html`);
 });
 
-
  app.use((req, res, next) =>{
      res.status(404).sendFile(`${basePath}/404.html`)
  })

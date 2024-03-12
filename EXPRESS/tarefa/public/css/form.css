@@ -1,0 +1,71 @@
+#h_form{
+    text-align: center;
+    margin-bottom: 50px;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: "Raleway", sans-serif;
+}
+
+#user_form{
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.cnt_f{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 7em;
+}
+
+
+#myForm {
+    max-width: 100%;
+    background-color: #fff;
+    padding: 3em;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.password-container {
+    position: relative;
+}
+
+#password {
+    padding-right: 30px; /* Espaço para o ícone */
+}
+
+#togglePassword {
+    position: absolute;
+    top: 40%;
+    right: 1em;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color:var(--yellowButton);
+    color: #fff;
+    border: none;
+    transition: 0.5s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    transition: 0.5s;
+    background-color: #dab640;
+}

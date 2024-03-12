@@ -12,7 +12,7 @@
         <ul class="ul">
                 <li class="li_f"><a href="/" class="li_f">Food's</a></li>
            <div class="ul">
-            <li class="li_c"><a class="li_c" href="#">sign up</a></li>
+            <li class="li_c"><a class="li_c" href="/foods/log">sign up</a></li>
             <li class="li_p"><a class="li_p" href="/foods/profile">Profile</a></li>
            </div>
             
@@ -23,12 +23,26 @@
     <div id="div_profile">
         <div class="div_in">
             <p id="nome" class="name">@Lorem ipsum</p>
-            <img class="img" src="../img/user.svg" alt="icon_profile"></img>
+            <img class="img" src="../img/user.svg" alt="icon_profile" width="210"></img>
         </div>
-        <div><p class="age"><strong class="s_b">Idade:</strong> 20</p></div>
+        <div><p class="age" id="email"><strong class="s_b">Email:</strong></p></div>
         <div><p  class="bio"><strong class="s_b">Bio:</strong>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p></div>
-        <div><input id="file" type="file" /></div>
+        <div class="div_btn">
+            <button class="btn_p" onclick="save()" >save details</button>
+            <button class="btn_p btn_p2" onclick="showStorage()">Account details</button>
+            <button class="btn_p btn_p2" onclick="loadData()">load data</button>
+        </div>
     </div>
-    
+    <script src="/js/storage.js"></script>
+    <script>
+
+      const urlParams = new URLSearchParams(window.location.search)
+          const name = urlParams.get("name")
+          const password = urlParams.get("key")
+          const email = urlParams.get("email")
+          document.getElementById('nome').innerText = `@${name}`;
+          document.getElementById('email').innerText = `${email}`;
+
+    </script>
 </body>
 </html>

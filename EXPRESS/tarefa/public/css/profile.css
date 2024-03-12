@@ -3,9 +3,9 @@
     margin: 0 auto;
     font-family: "Raleway", sans-serif;
     background-color: #fff;
-    padding: 2em;
+    padding: 3em;
     margin-top: 6em;
-    height: 20em;
+    height: 23em;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -30,9 +30,42 @@
     width: 40%;
 }
 
+#file{
+    margin-bottom: 1em;
+}
+
+.btn_p{
+    width: 30%;
+    padding: 0.5em;
+    background-color:var(--yellowButton);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.btn_p:hover{
+    transition: 0.5s;
+    background-color: #dab640;
+}
+
+.btn_p2{
+    background-color: #7FD572;
+}
+
+.btn_p2:hover{
+    background-color: #61AE54;
+}
 .s_b{
     color: black;
     font-weight: 700;
+}
+
+.div_btn{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
 }
 input {
     width: calc(100% - 20px);
