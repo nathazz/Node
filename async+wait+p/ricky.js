@@ -1,6 +1,5 @@
 // https://rickandmortyapi.com/api/character/158
 
-const { get } = require("http");
 
 async function getApi (id){
     return fetch(`https://rickandmortyapi.com/api/character/${id}`).then((data) =>
@@ -20,4 +19,4 @@ async function getCharacter (id){
 
 }
 
-getCharacter(215)
+getCharacter(1)

@@ -54,6 +54,15 @@
     background-color: #7FD572;
 }
 
+.btn_p3{
+    transition: 0.5s;
+    background-color: rgb(243, 88, 88);
+}
+.btn_p3:hover{
+    transition: 0.5s;
+    background-color: rgb(193, 73, 73);
+}
+
 .btn_p2:hover{
     background-color: #61AE54;
 }

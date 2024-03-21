@@ -34,3 +34,13 @@ function loadData(){
     
 }
 
+function deleteData() {
+    const name = localStorage.getItem("name");
+    const email = localStorage.getItem("email");
+    const password = localStorage.getItem("key")
+    
+    const list = [name, email, password]
+    localStorage.clear(list)
+
+}
+
