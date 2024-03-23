@@ -1,12 +1,13 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 const app = express()
+const imgUpload = require('express-fileupload')
 
 
 app.engine('handlebars', handlebars.engine())
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
-
+app.use(imgUpload())
 
 //mexer com form
 
@@ -37,6 +38,9 @@ app.get('/form', (req, res) =>{
 app.post('/cadastro', (req,res) =>{
     const body = req.body
     console.log(body);
+
+    //enviar a imagem para minhas pasta
+    req.files.imagem.mv(__dirname +  `/imgs/${ req.files.imagem.name}`)
     res.end()
 })
 
